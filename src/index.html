@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Signup Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<style>
+#video {
+  border: 1px solid black;
+  box-shadow: 2px 2px 3px black;
+  width:320px;
+  height:240px;
+}
+
+#photo {
+  border: 1px solid black;
+  box-shadow: 2px 2px 3px black;
+  width:320px;
+  height:240px;
+}
+
+#canvas {
+  display:none;
+}
+
+.camera {
+  width: 340px;
+  display:inline-block;
+}
+
+.output {
+  width: 340px;
+  display:inline-block;
+}
+
+#startbutton {
+  display:block;
+  position:relative;
+  margin-left:auto;
+  margin-right:auto;
+  bottom:32px;
+  background-color: green;
+  border: 1px solid lightgray;
+  box-shadow: 0px 0px 1px 2px gray;
+  font-size: 14px;
+  font-family: "Lucida Grande", "Arial", sans-serif;
+  color: white;
+}
+
+.contentarea {
+  font-size: 16px;
+  font-family: "Lucida Grande", "Arial", sans-serif;
+  width: 760px;
+}
+</style>    
+</head>
+
+<body>
+    <div class="row">
+        <div class="container">
+            <h2>Attendance Form</h2>
+            <div class="alert alert-success success-message" style="display:none;">Form submitted successfully.</div>
+            <form id="contactform" method="POST">
+                <div class="form-group">
+                    <label for="exampleFullName">Full Name</label>
+                    <input type="text" class="form-control fullname" id="fullname" placeholder="Enter Full Name"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="exampleEmail">Email</label>
+                    <input type="email" class="form-control email" id="email" placeholder="Enter Email" required>
+                </div>
+                <div class="form-group">
+                    <label for="exampleSubject">Register Number</label>
+                    <input type="text" class="form-control regno" id="regno" placeholder="Enter Subject"
+                        required>
+                </div>
+                <!--Camera Container-->
+                <div class="camera">
+                    <video id="video">Video stream not available</video>
+                    <button id="startbutton">Start Live Capture</button>
+                </div><br>
+                <canvas id="canvas"></canvas>
+                <div class="output">
+                    <img id="photo" alt="The capture appears here.">
+                </div>
+                <!--File Upload-->
+                <div class="form-group">
+                    <progress value="0" max="100" id="uploader">0%</progress>
+                    <label for="exampleRealImage">Upload/Capture</label>
+                    <button type="button" class="btn btn-primary">Choose</button>
+                    <input type="file" accept="image/*" capture="camera" id="cameraInput">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-storage.js"></script>
+    <script src="./main.js"></script>
+</body>
+</html>
+</body>
+</html>
