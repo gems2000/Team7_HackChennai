@@ -1,26 +1,19 @@
-# Import OpenCV2 for image processing
-import cv2
-# Import os for working with files
 import os
-# Importing numpy for working with multi-dimensional arrays and matrices
-import numpy as np 
-#Importing image for opening, manipulating and saving images in different formats
-from PIL import Image
+import cv2
+import numpy as np
+from PIL import Image;
 
-#Using the LBPH algorithm
 recognizer = cv2.face.LBPHFaceRecognizer_create()
-
-#Using the haarcascade frontalface classifier
-detector= cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
+detector= cv2.CascadeClassifier("haarcascade_frontalface_default.xml");
 
 def getImagesAndLabels(path):
-    #getting the path of all files in the folder
+    #get the path of all the files in the folder
     imagePaths=[os.path.join(path,f) for f in os.listdir(path)]
-    #creating a empty list for
+    #create empth face list
     faceSamples=[]
-    #creating a empty list for ID
+    #create empty ID list
     Ids=[]
-    #looping through all the image paths and loading the Ids and the images
+    #now looping through all the image paths and loading the Ids and the images
     for imagePath in imagePaths:
         #loading the image and converting it to gray scale
         pilImage=Image.open(imagePath).convert('L')
@@ -34,6 +27,12 @@ def getImagesAndLabels(path):
         for (x,y,w,h) in faces:
             faceSamples.append(imageNp[y:y+h,x:x+w])
             Ids.append(Id)
-    #returning the faceSamples and Ids
     return faceSamples,Ids
+#extracting the image and unique id
+faces,Ids = getImagesAndLabels('dataSet')   
+#training the dataset
+s = recognizer.train(faces, np.array(Ids))
+print("Successfully trained")
+#saving the trained data in .yml file
+recognizer.save('trainer/trainer.yml')
 
