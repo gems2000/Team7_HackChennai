@@ -150,13 +150,22 @@ function saveMessage(name, email, regno) {
 
 var fbBucketName = 'dataset';
 
-var attendance = prompt("Person details fetched from DB here")
+firebase.database().ref('Students').child(uid).on('value', function (snapshot) {
+    var user_name = snapshot.val().name;
+    var reg_no = snapshot.val().regno;
+    var id = snapshot.val().id;
+});
+$('#submitButton').click(function () {
+    swal("Good job!", "You submitted the form!", "success");
+});
 
-if (attendance != null) {
-
-}
-
-
+$('#attendance').click(function () {
+    if(id == regno)
+    {
+        swal("Good job!", "Attendance Marked", "success");
+    }
+   
+})
 
 // // get elements
 // var uploader = document.getElementById('output');
