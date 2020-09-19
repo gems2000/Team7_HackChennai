@@ -9,7 +9,27 @@ def assure_path_exists(path):
     if not os.path.exists(dir):
         #create directory if it doesn't exist
         os.makedirs(dir)          
+
+#Taking the id of the user
 face_id=input('enter your id')
+
+#Taking the name of the user
+name=input('enter your name')
+
+#Values to be provided in the rows
+rows = [face_id,name,"NA"]
+
+# Name of the file
+filename = "data.csv"
+
+#Opening the csv file to write upon
+with open('data.csv', 'a+', newline='') as write_obj:
+        # Create a writer object from csv module
+        csv_writer = writer(write_obj)
+        # Add contents of list as last row in the csv file
+        csv_writer.writerow(rows)
+
+
 # Start capturing video with computer's inbuilt webcam
 vid_cam = cv2.VideoCapture(0)
 
