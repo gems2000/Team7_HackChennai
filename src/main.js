@@ -15,7 +15,7 @@ firebase.initializeApp(firebaseConfig);
 var messageRef = firebase.database().ref('Students');
 
 // let formMessage = firebase.database().ref('register');
-document.getElementById('contactform').addEventListener('submit', formSubmit(event));
+document.getElementById('contactform').addEventListener('submit', formSubmit);
 
 function formSubmit(e) {
     e.preventDefault();
@@ -28,9 +28,9 @@ function formSubmit(e) {
 
     document.querySelector('.alert').style.display = 'block';
 
-    setTimeout(function(){
+    setTimeout(function () {
         document.querySelector('.alert').style.display = 'none';
-    },3000);
+    }, 3000);
 
     document.getElementById('contactform').reset();
 
@@ -141,63 +141,76 @@ function saveMessage(name, email, regno) {
         } else {
             clearphoto();
         }
+        console.log(data);
     }
 
     window.addEventListener('load', startup, false);
 })();
+
+
 var fbBucketName = 'dataset';
 
-// get elements
-var uploader = document.getElementById('uploader');
-var fileButton = document.getElementById('cameraInput');
+var attendance = prompt("Person details fetched from DB here")
 
-// listen for file selection
-fileButton.addEventListener('change', function (e) {
+if (attendance != null) {
 
-    // what happened
-    console.log('file upload event', e);
+}
 
-    // get file
-    var file = e.target.files[0];
 
-    // create a storage ref
-    var storageRef = firebase.storage().ref(`${fbBucketName}/${file.name}`);
 
-    // upload file
-    var uploadTask = storageRef.put(file);
+// // get elements
+// var uploader = document.getElementById('output');
 
-    // The part below is largely copy-pasted from the 'Full Example' section from
-    // https://firebase.google.com/docs/storage/web/upload-files
+// var fileButton = uploader.canvas.toDataURL('image/png');
 
-    // update progress bar
-    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
-        function (snapshot) {
-            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            uploader.value = progress;
-            
-        }, function (error) {
+// // listen for file selection
 
-            // A full list of error codes is available at
-            // https://firebase.google.com/docs/storage/web/handle-errors
-            switch (error.code) {
-                case 'storage/unauthorized':
-                    // User doesn't have permission to access the object
-                    break;
+// fileButton.addEventListener('change', function (e) {
 
-                case 'storage/canceled':
-                    // User canceled the upload
-                    break;
+//     // what happened
+//     console.log('file upload event', e);
 
-                case 'storage/unknown':
-                    // Unknown error occurred, inspect error.serverResponse
-                    break;
-            }
-        }, function () {
-            // Upload completed successfully, now we can get the download URL
-            // save this link somewhere, e.g. put it in an input field
-            var downloadURL = uploadTask.snapshot.downloadURL;
-            console.log('downloadURL', downloadURL);
-        });
+//     // get file
+//     var file = e.target.files[0];
 
-});
+//     // create a storage ref
+//     var storageRef = firebase.storage().ref(`${fbBucketName}/${file.name}`);
+
+//     // upload file
+//     var uploadTask = storageRef.put(file);
+
+//     // The part below is largely copy-pasted from the 'Full Example' section from
+//     // https://firebase.google.com/docs/storage/web/upload-files
+
+//     // update progress bar
+//     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+//         function (snapshot) {
+//             // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+//             var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+//             uploader.value = progress;
+
+//         }, function (error) {
+
+//             // A full list of error codes is available at
+//             // https://firebase.google.com/docs/storage/web/handle-errors
+//             switch (error.code) {
+//                 case 'storage/unauthorized':
+//                     // User doesn't have permission to access the object
+//                     break;
+
+//                 case 'storage/canceled':
+//                     // User canceled the upload
+//                     break;
+
+//                 case 'storage/unknown':
+//                     // Unknown error occurred, inspect error.serverResponse
+//                     break;
+//             }
+//         }, function () {
+//             // Upload completed successfully, now we can get the download URL
+//             // save this link somewhere, e.g. put it in an input field
+//             var downloadURL = uploadTask.snapshot.downloadURL;
+//             console.log('downloadURL', downloadURL);
+//         });
+
+// });
