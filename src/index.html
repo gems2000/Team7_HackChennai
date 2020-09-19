@@ -44,18 +44,41 @@
       margin-left: auto;
       margin-right: auto;
       bottom: 32px;
-      background-color: rgba(0, 150, 0, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.7);
-      box-shadow: 0px 0px 1px 2px rgba(0, 0, 0, 0.2);
+      background-color: #3074a1;
+      border: 1px solid lightgray;
+      box-shadow: 0px 0px 1px 2px #303a40;
       font-size: 14px;
       font-family: "Lucida Grande", "Arial", sans-serif;
-      color: rgba(255, 255, 255, 1.0);
+      color: lightgray;
     }
 
     .contentarea {
       font-size: 16px;
       font-family: "Lucida Grande", "Arial", sans-serif;
       width: 760px;
+    }
+
+    #header{
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    #contactform{
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+    }
+    #submitButton{
+        margin-top: 20px;
+        background-color: #0275d8;
+        color: white;
+    }
+    #submitButton:hover{
+        background-image: linear-gradient(-45deg, #0782f5, #8207f5);
+        color: white;
+    }
+    label{
+        margin-bottom: 5px;
+        margin-left: 2px;
     }
   </style>
     <style media="screen">
@@ -141,37 +164,41 @@
 </head>
 
 <body>
-  <div class="row">
+  <div class="row" style="margin-top: 40px;">
     <div class="container">
-      <h2>Attendance Form</h2>
+      <h2 id="header">Attendance Form</h2>
       <div class="alert alert-success success-message" style="display:none;">Form submitted successfully.</div>
       <form id="contactform">
-        <div class="form-group">
-          <label for="exampleFullName">Full Name</label>
-          <input type="text" class="form-control fullname" id="fullname" placeholder="Enter Full Name" required>
+        <div id="div1">
+            <div class="form-group">
+            <label for="exampleFullName">Full Name</label>
+            <input type="text" class="form-control fullname" id="fullname" placeholder="Enter Full Name" required>
+            </div>
+            <div class="form-group">
+            <label for="exampleEmail">Email</label>
+            <input type="email" class="form-control email" id="email" placeholder="Enter Email" required>
+            </div>
+            <div class="form-group">
+            <label for="exampleSubject">Register Number</label>
+            <input type="text" class="form-control regno" id="regno" placeholder="Enter Subject" required>
+            </div>
+            <button type="submit" class="btn" id="submitButton">Submit</button>
         </div>
-        <div class="form-group">
-          <label for="exampleEmail">Email</label>
-          <input type="email" class="form-control email" id="email" placeholder="Enter Email" required>
+        <div id="div2">
+            <!--Camera Container-->
+            <div class="camera">
+            <video id="video">Video stream not available</video>
+            <button id="startbutton">Start Live Capture</button>
+            </div><br>
+            <canvas id="canvas"></canvas>
+            <div class="output" id="output">
+            <img id="photo" alt="The capture appears here.">
+            </div>
+            <!--File Upload-->
+            <div class="form-group">
+            <progress value="0" max="100" id="uploader">0%</progress>
+            </div>
         </div>
-        <div class="form-group">
-          <label for="exampleSubject">Register Number</label>
-          <input type="text" class="form-control regno" id="regno" placeholder="Enter Subject" required>
-        </div>
-        <!--Camera Container-->
-        <div class="camera">
-          <video id="video">Video stream not available</video>
-          <button id="startbutton">Start Live Capture</button>
-        </div><br>
-        <canvas id="canvas"></canvas>
-        <div class="output" id="output">
-          <img id="photo" alt="The capture appears here.">
-        </div>
-        <!--File Upload-->
-        <div class="form-group">
-          <progress value="0" max="100" id="uploader">0%</progress>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
   </div>
