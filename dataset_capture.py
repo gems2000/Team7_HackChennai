@@ -17,7 +17,7 @@ face_id=input('enter your id')
 name=input('enter your name')
 
 #Values to be provided in the rows
-rows = [face_id,name,"NA"]
+rows = [face_id,name]
 
 # Name of the file
 filename = "data.csv"
