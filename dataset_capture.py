@@ -2,6 +2,8 @@
 import cv2
 #Import os for working with files
 import os
+#importing writer from csv to write into csv file
+from csv import writer
 #define a function
 def assure_path_exists(path):
     #gives current working directory
