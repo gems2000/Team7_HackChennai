@@ -150,22 +150,52 @@ function saveMessage(name, email, regno) {
 
 var fbBucketName = 'dataset';
 
-firebase.database().ref('Students').child(uid).on('value', function (snapshot) {
-    var user_name = snapshot.val().name;
-    var reg_no = snapshot.val().regno;
-    var id = snapshot.val().id;
+var playersRef = firebase.database().ref("Students/");
+
+playersRef.on("child_added", function (data, prevChildKey) {
+    var newPlayer = data.val();
+    newPlayer.name
+    console.log("age: " + newPlayer.age);
+    console.log("number: " + newPlayer.number);
+    console.log("Previous Player: " + prevChildKey);
 });
+
+playersRef.on("child_changed", function (data) {
+    var player = data.val();
+    console.log("The updated player name is " + player.name);
+});
+
 $('#submitButton').click(function () {
     swal("Good job!", "You submitted the form!", "success");
 });
 
 $('#attendance').click(function () {
-    if(id == regno)
-    {
-        swal("Good job!", "Attendance Marked", "success");
+    swal("Good job!", "Your attendance was marked", "success");
+});
+
+$('#attendance').click(function go() {
+    var userId = prompt('RegNo.', 'Guest');
+    checkIfUserExists(userId);
+});
+
+var USERS_LOCATION = 'https://team7-903a5.firebaseio.com/';
+
+function userExistsCallback(userId, exists) {
+    if (exists) {
+        swal('Student ' + userId + ' exists!');
+    } else {
+        swal('Student ' + userId + ' does not exist!');
     }
-   
-})
+}
+
+// Tests to see if /users/<userId> has any data. 
+function checkIfUserExists(userId) {
+    var usersRef = new Firebase(USERS_LOCATION);
+    usersRef.child(userId).once('value', function (snapshot) {
+        var exists = (snapshot.val() !== null);
+        userExistsCallback(userId, exists);
+    });
+}
 
 // // get elements
 // var uploader = document.getElementById('output');
