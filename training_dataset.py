@@ -34,5 +34,5 @@ faces,Ids = getImagesAndLabels('dataSet')
 s = recognizer.train(faces, np.array(Ids))
 print("Successfully trained")
 #saving the trained data in .yml file
-recognizer.save('trainer/trainer.yml')
+recognizer.save('trainer.yml')
 
