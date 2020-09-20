@@ -64,7 +64,7 @@ while(True):
         count += 1
 
         # Save the captured image into the datasets folder with unique id
-        cv2.imwrite("dataset/Divyansh Singhal." + str(face_id) + '.' + str(count) + ".jpg", gray[y:y+h,x:x+w])
+        cv2.imwrite("dataset/user." + str(face_id) + '.' + str(count) + ".jpg", gray[y:y+h,x:x+w])
 
         # Display the video frame, with bounded rectangle on the person's face
         cv2.imshow('frame', image_frame)
